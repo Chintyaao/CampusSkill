@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Kursus | CampusSkill</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="container nav-flex">
+            <a href="index.html" class="brand">
+                <img src="logo.png" alt="Logo">
+                Campus<span>Skill</span>
+            </a>
+            <a href="courses.html" style="text-decoration:none; font-weight:600; color:var(--primary);">Kembali</a>
+        </div>
+    </nav>
+
+    <div id="hero-bg" class="animate" style="padding: 80px 0; text-align: center; color: white;">
+        <div class="container">
+            <h1 id="title" style="font-size: 36px; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">Memuat...</h1>
+        </div>
+    </div>
+
+    <section class="section-padding">
+        <div class="container animate" style="max-width: 800px; background: white; padding: 40px; border-radius: 15px; margin-top: -60px; box-shadow: var(--shadow); position: relative; z-index: 5;">
+            <h3 style="margin-bottom: 20px; border-left: 5px solid var(--primary); padding-left: 15px;">Kurikulum Materi</h3>
+            <ul id="list" class="syllabus-list"></ul>
+            <a href="login.html" class="btn-primary" style="width:100%; text-align:center; margin-top:35px; padding: 18px;">Beli Kursus</a>
+        </div>
+    </section>
+
+    <script>
+        const db = {
+            'bigdata': { t: 'Big Data: Hadoop & Spark', b: 'var(--banner-1)', l: ['Pertemuan 1 - Fundamentals of Big Data', 'Pertemuan 2 - Big Data for Business', 'Pertemuan 3 - Big Data Challenges', 'Pertemuan 4 - Big Data Storage', 'Pertemuan 5 - Big Data Processing', 'Pertemuan 6 - Big Data Analytics', 'Pertemuan 7 - Big Data Visualization', 'Pertemuan 8 - Hadoop Ecosystem', 'Pertemuan 9 - Big Data Application'] },
+            'uxdesign': { t: 'UX for Digital Business', b: 'var(--banner-2)', l: ['Pertemuan 1 - The Essentials of designing UX', 'Pertemuan 2 - The Essentials of designing UX 2', 'Pertemuan 3 - Data gathering and analysis', 'Pertemuan 4 - Discovering Requirement', 'Pertemuan 5 - Interface Design', 'Pertemuan 6 - Contexts for designing UX', 'Pertemuan 7 - Human factors in UX 1', 'Pertemuan 8 - Human factors in UX 2', 'Pertemuan 9 - Design and Prototyping'] },
+            'feasibility': { t: 'Industrial Feasibility Analysis', b: 'var(--banner-3)', l: ['Topic 1 Project Feasibility Theory', 'Topic 2 Relationship with Resources', 'Topic 3 Market Aspects', 'Topic 4 Technical Aspects', 'Topic 5 Development Management', 'Topic 6 Operational Aspects', 'Topic 7 Economic Aspects', 'Topic 8 Financial Aspects', 'Topic 9 Priority Order'] }
+        };
+        const id = new URLSearchParams(window.location.search).get('course');
+        const c = db[id];
+        if(c){
+            document.getElementById('title').innerText = c.t;
+            document.getElementById('hero-bg').style.background = c.b;
+            c.l.forEach((m, index) => {
+                let li = document.createElement('li');
+                li.style.animation = `fadeUp 0.5s ease forwards ${index * 0.05}s`;
+                li.style.opacity = '0';
+                li.innerHTML = '<span>✅</span> ' + m;
+                document.getElementById('list').appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
